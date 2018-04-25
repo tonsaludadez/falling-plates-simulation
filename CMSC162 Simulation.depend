@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1524555947 source:c:\users\tonds\documents\cmsc162 simulation\src\shard.cpp
+	"Shard.h"
+
+1524555815 c:\users\tonds\documents\cmsc162 simulation\include\shard.h
+	<GL/glut.h>
+	"Vertex.h"
+
+1524575383 source:c:\users\tonds\documents\cmsc162 simulation\main.cpp
+	<windows.h>
+	<GL/glut.h>
+	<iostream>
+	<typeinfo>
+	<vector>
+	"Plate.h"
+
+1524576429 source:c:\users\tonds\documents\cmsc162 simulation\src\vertex.cpp
+	"Vertex.h"
+
+1524576399 c:\users\tonds\documents\cmsc162 simulation\include\vertex.h
+	<GL/glut.h>
+	<iostream>
+
+1524633556 source:c:\users\tonds\documents\cmsc162 simulation\src\plate.cpp
+	"Plate.h"
+
+1524558083 c:\users\tonds\documents\cmsc162 simulation\include\plate.h
+	<vector>
+	"Shard.h"
+
