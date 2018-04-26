@@ -47,7 +47,7 @@ void Vertex::setZ(GLfloat z)
     this->z = z;
 }
 
-void Vertex::display_values()
+void Vertex::displayValues()
 {
     cout<<"x: "<<this->getX()<<" , y: "<<this->getY()<<" , z: "<<this->getZ()<<endl;
 }

@@ -11,10 +11,10 @@ class Plate
     public:
         Plate();
         ~Plate();
-        Plate(GLfloat);
+        Plate(GLfloat, GLfloat, GLfloat);
         const static GLfloat gravity = 9.8f;
         vector<Shard> shards;
-        GLfloat angle, camera_z, height, time;
+        GLfloat angle, cameraZ, height, tablePlateDistance, time;
         GLboolean dropped;
         void draw();
 };

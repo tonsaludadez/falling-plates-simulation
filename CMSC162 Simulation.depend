@@ -28,3 +28,33 @@
 	<vector>
 	"Shard.h"
 
+1524711286 source:c:\users\tonds\documents\projects\falling-plates-simulation\main.cpp
+	<windows.h>
+	<GL/glut.h>
+	<iostream>
+	<typeinfo>
+	<math.h>
+	<vector>
+	"Plate.h"
+
+1524711233 c:\users\tonds\documents\projects\falling-plates-simulation\include\plate.h
+	<vector>
+	"Shard.h"
+
+1524713633 c:\users\tonds\documents\projects\falling-plates-simulation\include\shard.h
+	<GL/glut.h>
+	"Vertex.h"
+
+1524713635 c:\users\tonds\documents\projects\falling-plates-simulation\include\vertex.h
+	<GL/glut.h>
+	<iostream>
+
+1524714391 source:c:\users\tonds\documents\projects\falling-plates-simulation\src\plate.cpp
+	"Plate.h"
+
+1524714265 source:c:\users\tonds\documents\projects\falling-plates-simulation\src\shard.cpp
+	"Shard.h"
+
+1524639813 source:c:\users\tonds\documents\projects\falling-plates-simulation\src\vertex.cpp
+	"Vertex.h"
+

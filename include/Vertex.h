@@ -12,13 +12,13 @@ class Vertex
         Vertex();
         ~Vertex();
         Vertex(GLfloat, GLfloat, GLfloat);
-        GLfloat getX();
-        GLfloat getY();
-        GLfloat getZ();
-        void setX(GLfloat);
-        void setY(GLfloat);
-        void setZ(GLfloat);
-        void display_values();
+        GLfloat getX();                         ///Get x value
+        GLfloat getY();                         ///Get y value
+        GLfloat getZ();                         ///Get z value
+        void setX(GLfloat);                     ///Set x value
+        void setY(GLfloat);                     ///Set y value
+        void setZ(GLfloat);                     ///Set z value
+        void displayValues();                   ///Display x, y, and z values
     private:
         GLfloat x, y, z;
 };

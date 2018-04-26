@@ -10,12 +10,18 @@ Shard::~Shard()
     //dtor
 }
 
-Shard::Shard(Vertex top, Vertex middle, Vertex bottom)
+Shard::Shard(Vertex top, Vertex middle, Vertex bottom, GLfloat shardX, GLfloat shardY, GLfloat shardZ, GLfloat initialDistance)
 {
     this->setTop(top);
     this->setMiddle(middle);
     this->setBottom(bottom);
     this->shatter = GL_FALSE;
+    this->setShardX(shardX);
+    this->setShardY(shardY);
+    this->setShardZ(shardZ);
+    this->initialDistance = initialDistance;
+    this->plateTime = 0.0f;
+    this->time = 0.0f;
 }
 
 Vertex Shard::getTop()
@@ -53,12 +59,47 @@ void Shard::breakPart()
     this->shatter = GL_TRUE;
 }
 
-void Shard::display_values()
+void Shard::displayValues()
 {
     cout<<"TOP: ";
-    this->getTop().display_values();
+    this->getTop().displayValues();
     cout<<"MIDDLE: ";
-    this->getMiddle().display_values();
+    this->getMiddle().displayValues();
     cout<<"BOTTOM: ";
-    this->getBottom().display_values();
+    this->getBottom().displayValues();
+}
+
+GLboolean Shard::isBroken()
+{
+    return this->shatter;
+}
+
+GLfloat Shard::getShardX()
+{
+    return this->shardX;
+}
+
+GLfloat Shard::getShardY()
+{
+    return this->shardY;
+}
+
+GLfloat Shard::getShardZ()
+{
+    return this->shardZ;
+}
+
+void Shard::setShardX(GLfloat shardX)
+{
+    this->shardX = shardX;
+}
+
+void Shard::setShardY(GLfloat shardY)
+{
+    this->shardY = shardY;
+}
+
+void Shard::setShardZ(GLfloat shardZ)
+{
+    this->shardZ = shardZ;
 }
