@@ -9,7 +9,7 @@ class Shard
     public:
         Shard();
         ~Shard();
-        Shard(Vertex, Vertex, Vertex, GLfloat, GLfloat, GLfloat, GLfloat);
+        Shard(Vertex, Vertex, Vertex, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat);
         Vertex getTop();                                                            ///Get top vertex values
         Vertex getMiddle();                                                         ///Get middle vertex values
         Vertex getBottom();                                                         ///Get bottom vertex values

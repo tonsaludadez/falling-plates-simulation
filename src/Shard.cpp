@@ -10,7 +10,7 @@ Shard::~Shard()
     //dtor
 }
 
-Shard::Shard(Vertex top, Vertex middle, Vertex bottom, GLfloat shardX, GLfloat shardY, GLfloat shardZ, GLfloat initialDistance)
+Shard::Shard(Vertex top, Vertex middle, Vertex bottom, GLfloat shardX, GLfloat shardY, GLfloat shardZ, GLfloat initialDistance, GLfloat rotateAngle)
 {
     this->setTop(top);
     this->setMiddle(middle);
@@ -22,6 +22,7 @@ Shard::Shard(Vertex top, Vertex middle, Vertex bottom, GLfloat shardX, GLfloat s
     this->initialDistance = initialDistance;
     this->plateTime = 0.0f;
     this->time = 0.0f;
+    this->rotateAngle = rotateAngle;
 }
 
 Vertex Shard::getTop()

@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <GL/glut.h>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <typeinfo>
 #include <math.h>
 #include <vector>
@@ -8,6 +10,7 @@
 
 using namespace std;
 char title[] = "Falling Plate Simulation";
+char s[50];
 GLfloat cameraZ = -25.0f;
 GLfloat tablePlateDistance = cameraZ/5.0f;
 
@@ -24,6 +27,8 @@ void initGL()
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
     plates.push_back(Plate(cameraZ, tablePlateDistance, 0.0f));
+    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 90.0f));
+    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 240.0f));
 }
 
 void drawFloor()
@@ -72,6 +77,7 @@ void display()
 
     for(int i = 0; i < plates.size(); i++)
     {
+        sprintf(s, "Angle: %f", plates.at(i).angle);
         plates.at(i).draw();
     }
 
@@ -124,7 +130,7 @@ void onpress(unsigned char key, int x, int y)
                 }
             }
 
-            cout<<plates.size()<<endl;
+            //cout<<plates.size()<<endl;
             break;
     }
 }
