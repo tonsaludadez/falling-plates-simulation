@@ -11,25 +11,25 @@
 using namespace std;
 char title[] = "Falling Plate Simulation";
 char s[50];
-GLfloat cameraZ = -25.0f;
+GLfloat cameraZ = -75.0f;
 GLfloat tablePlateDistance = cameraZ/5.0f;
 
 int refreshMills = 15;
 vector<Plate> plates;
 
-void initGL()
-{
-    glClearColor(0.8f, 0.8f, 1.0f, 1.0f);
-    glClearDepth(1.0f);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    glShadeModel(GL_SMOOTH);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+// angle of rotation for the camera direction
+float angle = 0.0f;
+// actual vector representing the camera's direction
+float lx=0.0f,lz=-1.0f, ly = 0.0f;
+// XZ position of the camera
+float x=0.0f, z=5.0f, y = 1.75f;
+// the key states. These variables will be zero
+//when no key is being presses
+float deltaAngle = 0.0f;
+float deltaMove = 0;
+int xOrigin = -1;
 
-    plates.push_back(Plate(cameraZ, tablePlateDistance, 0.0f));
-    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 90.0f));
-    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 240.0f));
-}
+
 
 void drawFloor()
 {
@@ -102,19 +102,33 @@ void reshape(GLsizei width, GLsizei height)
    gluPerspective(45.0f, aspect, 0.1f, 100.0f);
 }
 
-void onclick(int button, int state, int x, int y)
+void mouseButton(int button, int state, int x, int y)
 {
     cout<<"Button: "<<button<< " | State: "<<state<<" | X,Y: "<<x<<","<<y<<endl;
+    if(button == GLUT_LEFT_BUTTON)
+    {
+        if(state == GLUT_UP)
+        {
+            //
+        }
+    }
+
+
 }
 
-void onpress(unsigned char key, int x, int y)
+void mouseMove()
+{
+
+}
+
+void keyboardNormal(unsigned char key, int x, int y)
 {
     switch(key){
         case 27:    ///Escape
-            cout<<"Pressed ESC"<<endl;
+            //cout<<"Pressed ESC"<<endl;
             exit(1);
         case 32:    ///Space
-            cout<<"Pressed SPACE"<<endl;
+            // cout<<"Pressed SPACE"<<endl;
             for(int i = 0; i < plates.size(); i++)
             {
                 if(!plates.at(i).dropped)
@@ -132,10 +146,17 @@ void onpress(unsigned char key, int x, int y)
 
             //cout<<plates.size()<<endl;
             break;
+        case 8:    ///Backspace
+            while(plates.size() > 0)
+            {
+                plates.pop_back();
+            }
+            plates.push_back(Plate(cameraZ, tablePlateDistance, 0.0));
+            break;
     }
 }
 
-void onpressSpecial(int key, int xx, int yy) {
+void keyboardSpecial(int key, int xx, int yy) {
 
 	switch (key) {
 		case GLUT_KEY_LEFT :
@@ -153,6 +174,29 @@ void onpressSpecial(int key, int xx, int yy) {
 	}
 }
 
+void initGL()
+{
+    glClearColor(0.8f, 0.8f, 1.0f, 1.0f);
+    glClearDepth(1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glShadeModel(GL_SMOOTH);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+    glutMouseFunc(mouseButton);
+    glutMotionFunc(mouseMove);
+    glutKeyboardFunc(keyboardNormal);
+    glutSpecialFunc(keyboardSpecial);
+    //glutSpecialUpFunc(keyboardReleaseSpecial);
+
+    glutTimerFunc(0, timer, 0);
+
+    /// Create 1st plate
+    plates.push_back(Plate(cameraZ, tablePlateDistance, 0.0f));
+    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 90.0f));
+    ///plates.push_back(Plate(cameraZ, tablePlateDistance, 240.0f));
+}
+
 int main(int argc, char** argv)
 {
    glutInit(&argc, argv);
@@ -162,11 +206,9 @@ int main(int argc, char** argv)
    glutCreateWindow(title);
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
-   glutMouseFunc(onclick);
-   glutKeyboardFunc(onpress);
-   glutSpecialFunc(onpressSpecial);
+
    initGL();
-   glutTimerFunc(0, timer, 0);
+
    glutMainLoop();
    return 0;
 }

@@ -10,10 +10,10 @@ Shard::~Shard()
     //dtor
 }
 
-Shard::Shard(Vertex top, Vertex middle, Vertex bottom, GLfloat shardX, GLfloat shardY, GLfloat shardZ, GLfloat initialDistance, GLfloat rotateAngle)
+Shard::Shard(Vertex middle, Vertex top, Vertex bottom, GLfloat shardX, GLfloat shardY, GLfloat shardZ, GLfloat initialDistance, GLfloat rotateAngle)
 {
-    this->setTop(top);
     this->setMiddle(middle);
+    this->setTop(top);
     this->setBottom(bottom);
     this->shatter = GL_FALSE;
     this->setShardX(shardX);
