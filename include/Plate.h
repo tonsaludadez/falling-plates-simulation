@@ -12,6 +12,8 @@ class Plate
         Plate();
         ~Plate();
         Plate(GLfloat, GLfloat, GLfloat);
+        void setCameraZ(GLfloat);
+        void setHeight(GLfloat);
         const static GLfloat gravity = 9.8f;
         vector<Shard> shards;
         GLfloat angle, cameraZ, height, tablePlateDistance, time;

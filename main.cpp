@@ -11,30 +11,16 @@
 using namespace std;
 char title[] = "Falling Plate Simulation";
 char s[50];
-GLfloat cameraZ = -75.0f;
+GLfloat cameraZ = -10.0f;
 GLfloat tablePlateDistance = cameraZ/5.0f;
 
 int refreshMills = 15;
 vector<Plate> plates;
 
-// angle of rotation for the camera direction
-float angle = 0.0f;
-// actual vector representing the camera's direction
-float lx=0.0f,lz=-1.0f, ly = 0.0f;
-// XZ position of the camera
-float x=0.0f, z=5.0f, y = 1.75f;
-// the key states. These variables will be zero
-//when no key is being presses
-float deltaAngle = 0.0f;
-float deltaMove = 0;
-int xOrigin = -1;
-
-
-
 void drawFloor()
 {
     glLoadIdentity();
-    glTranslatef(0.0f, tablePlateDistance-2.0f, cameraZ);
+    glTranslatef(0.0f, tablePlateDistance-2.0, cameraZ);
     glBegin(GL_QUADS);
 
     //FRONT
@@ -77,7 +63,6 @@ void display()
 
     for(int i = 0; i < plates.size(); i++)
     {
-        sprintf(s, "Angle: %f", plates.at(i).angle);
         plates.at(i).draw();
     }
 
@@ -105,20 +90,6 @@ void reshape(GLsizei width, GLsizei height)
 void mouseButton(int button, int state, int x, int y)
 {
     cout<<"Button: "<<button<< " | State: "<<state<<" | X,Y: "<<x<<","<<y<<endl;
-    if(button == GLUT_LEFT_BUTTON)
-    {
-        if(state == GLUT_UP)
-        {
-            //
-        }
-    }
-
-
-}
-
-void mouseMove()
-{
-
 }
 
 void keyboardNormal(unsigned char key, int x, int y)
@@ -166,12 +137,39 @@ void keyboardSpecial(int key, int xx, int yy) {
 		    cout<<"Pressed RIGHT"<<endl;
 			break;
 		case GLUT_KEY_UP :
-		    cout<<"Pressed UP"<<endl;
+		    //cout<<"Pressed UP"<<endl;
+		    if(cameraZ != -94)
+            {
+                cameraZ -= 1;
+                tablePlateDistance = cameraZ/5.0f;
+                for(int i = 0; i < plates.size(); i++)
+                {
+                    plates.at(i).setCameraZ(cameraZ);
+                    if(plates.at(i).shards.at(0).isBroken() or plates.at(i).shards.at(0).isDropped())
+                    {
+                        plates.at(i).setHeight(tablePlateDistance);
+                    }
+                }
+            }
 			break;
 		case GLUT_KEY_DOWN :
-		    cout<<"Pressed DOWN"<<endl;
+		    //cout<<"Pressed DOWN"<<endl;
+		    if(cameraZ != -10)
+            {
+                cameraZ += 1;
+                tablePlateDistance = cameraZ/5.0f;
+                for(int i = 0; i < plates.size(); i++)
+                {
+                    plates.at(i).setCameraZ(cameraZ);
+                    if(plates.at(i).shards.at(0).isBroken() or plates.at(i).shards.at(0).isDropped())
+                    {
+                        plates.at(i).setHeight(tablePlateDistance);
+                    }
+                }
+            }
 			break;
 	}
+	//cout<<cameraZ<<endl;
 }
 
 void initGL()
@@ -184,7 +182,7 @@ void initGL()
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
     glutMouseFunc(mouseButton);
-    glutMotionFunc(mouseMove);
+    //glutMotionFunc(mouseMove);
     glutKeyboardFunc(keyboardNormal);
     glutSpecialFunc(keyboardSpecial);
     //glutSpecialUpFunc(keyboardReleaseSpecial);

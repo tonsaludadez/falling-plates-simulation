@@ -16,6 +16,7 @@ Shard::Shard(Vertex middle, Vertex top, Vertex bottom, GLfloat shardX, GLfloat s
     this->setTop(top);
     this->setBottom(bottom);
     this->shatter = GL_FALSE;
+    this->drop = GL_FALSE;
     this->setShardX(shardX);
     this->setShardY(shardY);
     this->setShardZ(shardZ);
@@ -60,6 +61,11 @@ void Shard::breakPart()
     this->shatter = GL_TRUE;
 }
 
+void Shard::dropped()
+{
+    this->drop = GL_TRUE;
+}
+
 void Shard::displayValues()
 {
     cout<<"TOP: ";
@@ -73,6 +79,11 @@ void Shard::displayValues()
 GLboolean Shard::isBroken()
 {
     return this->shatter;
+}
+
+GLboolean Shard::isDropped()
+{
+    return this->drop;
 }
 
 GLfloat Shard::getShardX()

@@ -17,8 +17,10 @@ class Shard
         void setMiddle(Vertex);                                                     ///Set middle vertex values
         void setBottom(Vertex);                                                     ///Set bottom vertex values
         void breakPart();                                                           ///Set shatter to true
+        void dropped();                                                            ///Set drop to true
         void displayValues();                                                       ///Display the values for top, middle, and bottom vertices
         GLboolean isBroken();                                                       ///Checks if shatter is true
+        GLboolean isDropped();                                                      ///Checks if drop is true
         GLfloat getShardX();                                                        ///Get x plane position for translation
         GLfloat getShardY();                                                        ///Get y plane position for translation
         GLfloat getShardZ();                                                        ///Get z plane position for translation
@@ -28,7 +30,7 @@ class Shard
         GLfloat initialDistance, rotateAngle, plateTime, time;
     private:
         Vertex top, middle, bottom;
-        GLboolean shatter;
+        GLboolean shatter, drop;
         GLfloat shardX, shardY, shardZ;
 };
 
