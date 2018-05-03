@@ -149,8 +149,8 @@ void keyboardSpecial(int key, int xx, int yy) {
 
 void initGL()
 {
-    //glClearColor(0.8f, 0.8f, 1.0f, 1.0f);   /// Blue sky
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   /// Black sky
+    glClearColor(0.8f, 0.8f, 1.0f, 1.0f);   /// Blue sky
+    //glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   /// Black sky
     glClearDepth(1.0f);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
