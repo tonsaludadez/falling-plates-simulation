@@ -38,14 +38,12 @@ void drawFloor()
     glVertex3f(-10.0f, -1.0f, 5.0f);
 
     //RIGHT
-    //glColor3f(1.0f,0.0f,0.0f);
     glVertex3f(10.0f, 1.0f, -5.0f);
     glVertex3f(10.0f, 1.0, 5.0f);
     glVertex3f(10.0f, -1.0, 5.0f);
     glVertex3f(10.0f, -1.0, -5.0f);
 
     //TOP
-    //glColor3f(1.0f,0.0f,0.0f);
     glVertex3f(10.0f, 1.0f, -5.0f);
     glVertex3f(-10.0f, 1.0f, -5.0f);
     glVertex3f(-10.0f, 1.0f, 5.0f);
@@ -87,35 +85,21 @@ void reshape(GLsizei width, GLsizei height)
    gluPerspective(45.0f, aspect, 0.1f, 100.0f);
 }
 
-void mouseButton(int button, int state, int x, int y)
-{
-    cout<<"Button: "<<button<< " | State: "<<state<<" | X,Y: "<<x<<","<<y<<endl;
-}
-
 void keyboardNormal(unsigned char key, int x, int y)
 {
     switch(key){
         case 27:    ///Escape
-            //cout<<"Pressed ESC"<<endl;
             exit(1);
         case 32:    ///Space
-            // cout<<"Pressed SPACE"<<endl;
             for(int i = 0; i < plates.size(); i++)
             {
                 if(!plates.at(i).dropped)
                 {
-                    //cout<<"NOT DROPPED YET. DROPPING"<<endl;
                     plates.at(i).dropped = GL_TRUE;
                     plates.push_back(Plate(cameraZ, tablePlateDistance, plates.at(i).angle));
                     break;
                 }
-                else
-                {
-                    //cout<<"ALREADY DROPPED"<<endl;
-                }
             }
-
-            //cout<<plates.size()<<endl;
             break;
         case 8:    ///Backspace
             while(plates.size() > 0)
@@ -130,14 +114,7 @@ void keyboardNormal(unsigned char key, int x, int y)
 void keyboardSpecial(int key, int xx, int yy) {
 
 	switch (key) {
-		case GLUT_KEY_LEFT :
-		    cout<<"Pressed LEFT"<<endl;
-			break;
-		case GLUT_KEY_RIGHT :
-		    cout<<"Pressed RIGHT"<<endl;
-			break;
 		case GLUT_KEY_UP :
-		    //cout<<"Pressed UP"<<endl;
 		    if(cameraZ != -94)
             {
                 cameraZ -= 1;
@@ -153,7 +130,6 @@ void keyboardSpecial(int key, int xx, int yy) {
             }
 			break;
 		case GLUT_KEY_DOWN :
-		    //cout<<"Pressed DOWN"<<endl;
 		    if(cameraZ != -10)
             {
                 cameraZ += 1;
@@ -169,23 +145,20 @@ void keyboardSpecial(int key, int xx, int yy) {
             }
 			break;
 	}
-	//cout<<cameraZ<<endl;
 }
 
 void initGL()
 {
-    glClearColor(0.8f, 0.8f, 1.0f, 1.0f);
+    //glClearColor(0.8f, 0.8f, 1.0f, 1.0f);   /// Blue sky
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   /// Black sky
     glClearDepth(1.0f);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glShadeModel(GL_SMOOTH);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-    glutMouseFunc(mouseButton);
-    //glutMotionFunc(mouseMove);
     glutKeyboardFunc(keyboardNormal);
     glutSpecialFunc(keyboardSpecial);
-    //glutSpecialUpFunc(keyboardReleaseSpecial);
 
     glutTimerFunc(0, timer, 0);
 

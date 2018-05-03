@@ -133,7 +133,6 @@ void Plate::draw()
         if(this->shards.at(i).isDropped() or this->shards.at(i).isBroken())
         {
             ///DO NOTHING
-            //cout<<this->angle<<endl;
         }
         else
         {
@@ -150,10 +149,9 @@ void Plate::draw()
         glVertex3f(this->shards.at(i).getBottom().getX(), this->shards.at(i).getBottom().getY(), this->shards.at(i).getBottom().getZ());
         glEnd();
 
-        //this->shards.at(i).setShardX();
         this->shards.at(i).setShardY(this->height);
-        //this->shards.at(i).setShardZ();
     }
+
     ///Reached the surface
     if(this->height <= this->tablePlateDistance+0.2 && this->tablePlateDistance <= -10)
     {
@@ -161,7 +159,6 @@ void Plate::draw()
         {
             if(!this->shards.at(i).isDropped())
             {
-
                 if(!this->shards.at(i).isBroken())
                 {
                     this->shards.at(i).breakPart();
@@ -172,23 +169,25 @@ void Plate::draw()
                     if(this->shards.at(i).time < 0.2)
                     {
                         this->shards.at(i).time += 0.1;
-                        //if(this->shards.at(i))
                         if(i%2==0)
                         {
                             this->shards.at(i).setShardX(this->shards.at(i).getShardX() - (this->shards.at(i).plateTime * i) * 0.003);
                             this->shards.at(i).setShardY(this->shards.at(i).getShardY() - (this->shards.at(i).plateTime * i) * 0.003);
-                            this->shards.at(i).setShardZ(this->shards.at(i).getShardZ() - (this->shards.at(i).plateTime * i) * 0.003);
+                            //this->shards.at(i).setShardY(this->tablePlateDistance);
+                            //this->shards.at(i).setShardZ(this->shards.at(i).getShardZ() - (this->shards.at(i).plateTime * i) * 0.003);
                         }
                         else
                         {
                             this->shards.at(i).setShardX(this->shards.at(i).getShardX() + (this->shards.at(i).plateTime * i) * 0.003);
                             this->shards.at(i).setShardY(this->shards.at(i).getShardY() + (this->shards.at(i).plateTime * i) * 0.003);
-                            this->shards.at(i).setShardZ(this->shards.at(i).getShardZ() + (this->shards.at(i).plateTime * i) * 0.003);
+                            //this->shards.at(i).setShardY(this->tablePlateDistance);
+                            //this->shards.at(i).setShardZ(this->shards.at(i).getShardZ() + (this->shards.at(i).plateTime * i) * 0.003);
                         }
                     }
                     else
                     {
                         ///Make the shards flat
+                        this->height=this->tablePlateDistance;
                         this->shards.at(i).setShardY(this->tablePlateDistance);
                         this->shards.at(i).rotateAngle = 90;
                     }
@@ -210,6 +209,7 @@ void Plate::draw()
             {
                 ///Make the shards flat
                 this->shards.at(i).setShardY(this->tablePlateDistance);
+                this->height=this->tablePlateDistance;
                 if(this->angle > 30 && this->angle < 180)
                 {
                     this->shards.at(i).rotateAngle = 90;
